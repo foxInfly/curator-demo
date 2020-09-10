@@ -10,7 +10,7 @@ import org.apache.curator.retry.ExponentialBackoffRetry;
  */
 public class Curator {
 
-    private static String CONNECTION_STR="192.168.3.50:2181";
+    private static String CONNECTION_STR="192.168.3.540:2181";
 
     public static void main(String[] args) {
 //        CuratorFramework curatorFramework = CuratorFrameworkFactory.newClient("");
