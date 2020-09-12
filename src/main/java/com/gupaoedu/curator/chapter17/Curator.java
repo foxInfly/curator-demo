@@ -11,7 +11,7 @@ import org.apache.zookeeper.CreateMode;
  */
 public class Curator {
 
-    private static String CONNECTION_STR="192.168.3.50:2181";
+    private static String CONNECTION_STR="192.168.3.540:2181";
 
     public static void main(String[] args) throws Exception {
 //        CuratorFramework curatorFramework = CuratorFrameworkFactory.newClient("");
