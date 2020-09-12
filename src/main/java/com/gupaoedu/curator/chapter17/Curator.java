@@ -7,6 +7,7 @@ import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.data.Stat;
 
 /**Curator连接zookeeper的一种组件
+ * 还有一个zkclient，一般用curator
  * @author : lipu
  * @since : 2020-09-10 00:12
  */
