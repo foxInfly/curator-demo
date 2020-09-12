@@ -4,6 +4,7 @@ import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.zookeeper.CreateMode;
+import org.apache.zookeeper.data.Stat;
 
 /**Curator连接zookeeper的一种组件
  * @author : lipu
@@ -11,7 +12,7 @@ import org.apache.zookeeper.CreateMode;
  */
 public class Curator {
 
-    private static String CONNECTION_STR="192.168.3.540:2181";
+    private static String CONNECTION_STR="192.168.3.50:2181";
 
     public static void main(String[] args) throws Exception {
 //        CuratorFramework curatorFramework = CuratorFrameworkFactory.newClient("");
@@ -26,7 +27,9 @@ public class Curator {
                 .build();
 
         curatorFramework.start();//启动
-        createData(curatorFramework);
+//        createData(curatorFramework);
+//        updateData(curatorFramework);
+        deleteData(curatorFramework);
 
         //CRUD
 //        curatorFramework.create();//创建
@@ -35,11 +38,36 @@ public class Curator {
 //        curatorFramework.getData();//查询
     }
 
+    /**
+     * 创建节点
+     */
     private static void createData(CuratorFramework curatorFramework) throws Exception {
         //creatingParentsIfNeeded:是否要创建父节点，默认：true
         //withMode:设置节点的类型PERSISTENT(默认)，PERSISTENT_SEQUENTIAL，EPHEMERAL。。。。
         //withACL:权限设置
         curatorFramework.create().creatingParentsIfNeeded().forPath("/data/program","test".getBytes());
+
+    }
+
+    /**
+     * 修改节点
+     */
+    private static void updateData(CuratorFramework curatorFramework) throws Exception {
+        curatorFramework.setData().forPath("/data/program","update".getBytes());
+
+    }
+
+    /**
+     * 删除节点
+     */
+    private static void deleteData(CuratorFramework curatorFramework) throws Exception {
+        //deletingChildrenIfNeeded:是否要递归删除，默认：true
+        //withVersion:传版本，不对会失败；否则：BadVersion for /data/program;如果其他更改就会失败，就是锁
+        //withACL:权限设置
+        Stat stat = new Stat();
+        byte[] bytes = curatorFramework.getData().storingStatIn(stat).forPath("/data/program");
+        String value = new String(bytes);
+        curatorFramework.delete().withVersion(stat.getVersion()).forPath("/data/program");
 
     }
 
