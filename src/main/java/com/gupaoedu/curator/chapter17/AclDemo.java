@@ -23,9 +23,15 @@ public class AclDemo {
 
     public static void main(String[] args) throws Exception {
 //        CuratorFramework curatorFramework = CuratorFrameworkFactory.newClient("");
+
+        //授权
+
+
+
         CuratorFramework curatorFramework = CuratorFrameworkFactory.builder()
                 .connectString(CONNECTION_STR)//连接字符串
                 .sessionTimeoutMs(5000)  //session超时时间，毫秒
+                .authorization("digest","admin:admin".getBytes())//给本次会话添加授权限
                 //ExponentialBackoffRetry，衰减重试策略，每睡1000毫秒重试一次，最多3次，这3次的睡眠时间是递增的
                 //RetryOneTime，只重试一次
                 //RetryUtilElapsed，一直重试，知道规定的时间结束
