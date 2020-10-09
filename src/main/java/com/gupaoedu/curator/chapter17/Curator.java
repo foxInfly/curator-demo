@@ -13,7 +13,8 @@ import org.apache.zookeeper.data.Stat;
  */
 public class Curator {
 
-    private static String CONNECTION_STR="192.168.3.50:2181";
+    //    private static String CONNECTION_STR="192.168.3.50:2181";
+    private static String CONNECTION_STR="114.55.95.30:2181";
 
     public static void main(String[] args) throws Exception {
 //        CuratorFramework curatorFramework = CuratorFrameworkFactory.newClient("");

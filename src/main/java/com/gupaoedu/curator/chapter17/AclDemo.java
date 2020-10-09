@@ -19,7 +19,8 @@ import java.util.List;
  */
 public class AclDemo {
 
-    private static String CONNECTION_STR="192.168.3.50:2181";
+//    private static String CONNECTION_STR="192.168.3.50:2181";
+    private static String CONNECTION_STR="114.55.95.30:2181";
 
     public static void main(String[] args) throws Exception {
 //        CuratorFramework curatorFramework = CuratorFrameworkFactory.newClient("");
@@ -32,7 +33,7 @@ public class AclDemo {
                 .connectString(CONNECTION_STR)//连接字符串
                 .sessionTimeoutMs(5000)  //session超时时间，毫秒
                 .authorization("digest","admin:admin".getBytes())//给本次会话添加授权限
-                //ExponentialBackoffRetry，衰减重试策略，每睡1000毫秒重试一次，最多3次，这3次的睡眠时间是递增的
+                //ExponentialBackoffRetry，衰减重试策略，每睡眠1000毫秒重试一次，最多3次，这3次的睡眠时间是递增的
                 //RetryOneTime，只重试一次
                 //RetryUtilElapsed，一直重试，知道规定的时间结束
                 //RetryNTimes，指定最大的重试次数
